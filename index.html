@@ -25,6 +25,22 @@
     />
     <link rel="stylesheet" href="assets/css/styles.css" />
 
+    <!--
+      Analytics placeholder (Google Analytics 4 - preferred lightweight setup for static sites):
+      1) Replace GA_MEASUREMENT_ID_HERE with your real Measurement ID (example: G-XXXXXXXXXX).
+      2) Keep both lines below unchanged except for that ID.
+      3) If you prefer Plausible or Umami, replace this block with the provider's script snippet.
+    -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID_HERE"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+      gtag('config', 'GA_MEASUREMENT_ID_HERE');
+    </script>
+
     <title>Tony Kimani | Portfolio</title>
   </head>
   <body>
