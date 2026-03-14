@@ -87,6 +87,22 @@ if (yearSpan) {
 }
 
 
+/* ===== Work experience accordions ===== */
+const experienceAccordions = document.querySelectorAll('.experience__card');
+
+experienceAccordions.forEach((accordion) => {
+  accordion.addEventListener('toggle', () => {
+    if (!accordion.open) return;
+
+    experienceAccordions.forEach((item) => {
+      if (item !== accordion) {
+        item.open = false;
+      }
+    });
+  });
+});
+
+
 /* ===== Scroll animations (AOS) ===== */
 function initScrollAnimations() {
   if (typeof AOS === 'undefined') return;
