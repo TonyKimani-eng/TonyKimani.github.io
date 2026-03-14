@@ -59,6 +59,7 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 body {
@@ -68,6 +69,20 @@ body {
   background: var(--color-bg);
   line-height: 1.7;
   transition: background-color 0.3s ease, color 0.3s ease;
+  overflow-x: hidden;
+}
+
+img,
+picture,
+video {
+  max-width: 100%;
+  height: auto;
+}
+
+.swiper,
+.swiper-wrapper,
+.swiper-slide {
+  min-width: 0;
 }
 
 body,
@@ -138,6 +153,10 @@ ul {
 .section__text {
   margin-bottom: var(--space-3);
   color: var(--color-text);
+}
+
+.about__actions {
+  margin-top: var(--space-2);
 }
 
 .center {
@@ -870,6 +889,56 @@ ul {
 }
 
 @media screen and (max-width: 600px) {
+  .container {
+    width: min(1100px, calc(100% - 1.5rem));
+  }
+
+  .section {
+    padding: 4.2rem 0;
+  }
+
+  .hero {
+    padding-top: calc(var(--space-5) + 0.4rem);
+  }
+
+  .hero__intro,
+  .hero__profile,
+  .card,
+  .project {
+    padding: 1rem;
+  }
+
+  .hero__title {
+    font-size: clamp(1.8rem, 9vw, 2.4rem);
+  }
+
+  .hero__subtitle {
+    font-size: 1rem;
+  }
+
+  .hero__actions {
+    gap: 0.7rem;
+  }
+
+  .hero__actions .button {
+    width: 100%;
+    text-align: center;
+  }
+
+  .nav__menu {
+    max-height: calc(100vh - var(--header-height));
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+
+  .project__content {
+    padding-inline: 0;
+  }
+
+  .project__description {
+    font-size: 0.95rem;
+  }
+
   .gallery-modal {
     padding: 0.75rem;
   }
@@ -886,6 +955,31 @@ ul {
   }
 }
 
+@media screen and (max-width: 420px) {
+  .contact__links a {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .gallery-modal__nav {
+    top: auto;
+    bottom: 0.85rem;
+    transform: none;
+  }
+
+  .gallery-modal__nav--prev {
+    left: calc(50% - 3.2rem);
+  }
+
+  .gallery-modal__nav--next {
+    right: calc(50% - 3.2rem);
+  }
+
+  .gallery-modal__close {
+    top: 0.6rem;
+    right: 0.6rem;
+  }
+}
 
 @media (prefers-reduced-motion: reduce) {
    .hero__wave,

@@ -37,6 +37,12 @@ if (navToggle && navMenu) {
   navToggle.addEventListener('click', () => {
     navMenu.classList.toggle('show-menu');
   });
+
+  window.addEventListener('resize', () => {
+    if (window.innerWidth >= 768) {
+      navMenu.classList.remove('show-menu');
+    }
+  });
 }
 
 navLinks.forEach((link) => {
@@ -169,8 +175,10 @@ projectGalleries.forEach((gallery) => {
   });
 
   // Pause while hovered and resume on mouse leave for clarity.
-  gallery.addEventListener('mouseenter', () => gallerySwiper.autoplay.stop());
-  gallery.addEventListener('mouseleave', () => gallerySwiper.autoplay.start());
+  if (window.matchMedia('(hover: hover)').matches) {
+    gallery.addEventListener('mouseenter', () => gallerySwiper.autoplay.stop());
+    gallery.addEventListener('mouseleave', () => gallerySwiper.autoplay.start());
+  }
 });
 
 /* ===== Click-to-preview modal for project images ===== */
