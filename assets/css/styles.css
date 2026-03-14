@@ -177,6 +177,7 @@ ul {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: var(--space-2);
 }
 
 .nav__logo {
@@ -185,42 +186,71 @@ ul {
   letter-spacing: -0.03em;
 }
 
+.nav__actions {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+
 .nav__toggle {
   border: 1px solid var(--color-border);
   background: var(--color-surface);
   color: var(--color-title);
-  font-size: 1.1rem;
-  padding: 0.35rem 0.6rem;
-  border-radius: 0.45rem;
+  font-size: 0.92rem;
+  font-weight: 600;
+  padding: 0.46rem 0.82rem;
+  border-radius: 999px;
   cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.42rem;
+}
+
+.nav__toggle i {
+  font-size: 0.78rem;
+  transition: transform 0.24s ease;
+}
+
+.nav__toggle[aria-expanded="true"] i {
+  transform: rotate(180deg);
 }
 
 .nav__menu {
-  position: fixed;
-  inset: var(--header-height) 0 auto 0;
-  background: var(--color-surface);
-  border-bottom: 1px solid var(--color-border);
-  transform: translateY(-125%);
-  transition: transform 0.28s ease;
+  position: absolute;
+  top: calc(100% + 0.7rem);
+  right: 0;
+  width: min(18rem, calc(100vw - 2rem));
+  padding: 0.6rem;
+  background: color-mix(in srgb, var(--color-surface) 96%, transparent);
+  border: 1px solid var(--color-border);
+  border-radius: 0.9rem;
+  box-shadow: var(--shadow-soft);
+  transform: translateY(-8px);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: transform 0.24s ease, opacity 0.24s ease, visibility 0.24s ease;
 }
 
 .nav__menu.show-menu {
   transform: translateY(0);
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
 }
 
 .nav__list {
-  display: flex;
-  flex-direction: column;
-  gap: 0.7rem;
-  padding: 1rem 1.2rem 1.2rem;
-  align-items: flex-start;
+  display: grid;
+  gap: 0.25rem;
 }
 
 .nav__link {
   color: var(--color-muted);
   font-weight: 500;
-  padding: 0.35rem 0.72rem;
-  border-radius: 999px;
+  padding: 0.5rem 0.72rem;
+  border-radius: 0.6rem;
+  display: block;
 }
 
 .nav__link.active-link,
@@ -258,6 +288,7 @@ ul {
 
 
 .theme-toggle:focus-visible,
+.nav__toggle:focus-visible,
 .nav__link:focus-visible,
 .experience__summary:focus-visible {
   outline: 2px solid var(--color-primary-alt);
@@ -275,7 +306,7 @@ ul {
   content: "";
   position: absolute;
   inset: 0;
-  background-image: url("../img/backgroundimage.jpg");
+  background-image: url("../img/new background.jpg");
   background-size: cover;
   background-position: center 28%;
   background-repeat: no-repeat;
@@ -562,7 +593,7 @@ ul {
 }
 
 .experience__summary::after {
-  content: "Show details";
+  content: "Show Details";
   justify-self: start;
   margin-top: 0.2rem;
   font-size: 0.8rem;
@@ -571,11 +602,19 @@ ul {
 }
 
 .experience__card[open] .experience__summary::after {
-  content: "Hide details";
+  content: "Hide Details";
 }
 
 .experience__card[open] .experience__summary {
   border-bottom: 1px solid var(--color-border);
+}
+
+.certification__summary::after {
+  content: "Show Cert";
+}
+
+.certification__card[open] .certification__summary::after {
+  content: "Hide Details";
 }
 
 .experience__details {
@@ -841,36 +880,6 @@ ul {
 }
 
 @media screen and (min-width: 768px) {
-  .nav__toggle {
-    display: none;
-  }
-
-  .nav__menu {
-    all: unset;
-    flex: 1;
-    min-width: 0;
-    margin-left: 0.8rem;
-  }
-
-  .nav__list {
-    flex-direction: row;
-    align-items: center;
-    justify-content: flex-end;
-    flex-wrap: nowrap;
-    gap: 0.3rem;
-    padding: 0;
-    overflow-x: auto;
-    scrollbar-width: thin;
-  }
-
-  .nav__list li {
-    flex: 0 0 auto;
-  }
-
-  .theme-toggle {
-    margin-left: 0.25rem;
-  }
-
   .theme-toggle__text {
     font-size: 0.75rem;
   }
@@ -1095,18 +1104,24 @@ ul {
     font-size: 0.74rem;
   }
 
+  .nav__actions {
+    gap: 0.45rem;
+  }
+
+  .nav__toggle {
+    padding: 0.4rem 0.68rem;
+  }
+
+  .theme-toggle {
+    padding: 0.38rem 0.65rem;
+  }
+
+  .theme-toggle__text {
+    display: none;
+  }
+
   .nav__menu {
-    max-height: calc(100vh - var(--header-height));
-    overflow-y: auto;
-    overflow-x: hidden;
-  }
-
-  .nav__list {
-    width: 100%;
-  }
-
-  .nav__link {
-    display: inline-flex;
+    width: min(17rem, calc(100vw - 1.5rem));
   }
 
   .project__content {
