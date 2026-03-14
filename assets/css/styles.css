@@ -211,19 +211,22 @@ ul {
 .nav__list {
   display: flex;
   flex-direction: column;
-  gap: 1.1rem;
-  padding: 1.2rem;
+  gap: 0.7rem;
+  padding: 1rem 1.2rem 1.2rem;
   align-items: flex-start;
 }
 
 .nav__link {
   color: var(--color-muted);
   font-weight: 500;
+  padding: 0.35rem 0.72rem;
+  border-radius: 999px;
 }
 
 .nav__link.active-link,
 .nav__link:hover {
   color: var(--color-primary-alt);
+  background: color-mix(in srgb, var(--color-primary-soft) 55%, transparent);
 }
 
 .theme-toggle {
@@ -251,6 +254,14 @@ ul {
 
 .theme-toggle__text {
   font-size: 0.82rem;
+}
+
+
+.theme-toggle:focus-visible,
+.nav__link:focus-visible,
+.experience__summary:focus-visible {
+  outline: 2px solid var(--color-primary-alt);
+  outline-offset: 3px;
 }
 
 .hero {
@@ -527,14 +538,55 @@ ul {
   gap: var(--space-3);
 }
 
+.experience__item {
+  min-width: 0;
+}
+
 .experience__card {
   border-color: color-mix(in srgb, var(--color-primary-alt) 35%, var(--color-border));
   background: linear-gradient(150deg, color-mix(in srgb, var(--color-surface) 96%, #ffffff), color-mix(in srgb, var(--color-bg) 90%, var(--color-surface)));
+  padding: 0;
+  overflow: hidden;
+}
+
+.experience__summary {
+  list-style: none;
+  cursor: pointer;
+  padding: var(--space-3);
+  display: grid;
+  gap: 0.45rem;
+}
+
+.experience__summary::-webkit-details-marker {
+  display: none;
+}
+
+.experience__summary::after {
+  content: "Show details";
+  justify-self: start;
+  margin-top: 0.2rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--color-primary-alt);
+}
+
+.experience__card[open] .experience__summary::after {
+  content: "Hide details";
+}
+
+.experience__card[open] .experience__summary {
+  border-bottom: 1px solid var(--color-border);
+}
+
+.experience__details {
+  display: grid;
+  gap: 0.75rem;
+  padding: 0 var(--space-3) var(--space-3);
 }
 
 .experience__meta {
   display: inline-block;
-  margin-bottom: 0.55rem;
+  margin-bottom: 0.35rem;
   padding: 0.25rem 0.62rem;
   border-radius: 999px;
   font-size: 0.78rem;
@@ -548,12 +600,11 @@ ul {
 .experience__org {
   color: var(--color-title);
   font-weight: 600;
-  margin-bottom: 0.7rem;
 }
 
+.experience__location,
 .experience__description {
   color: var(--color-text);
-  margin-bottom: 0.8rem;
 }
 
 .experience__list {
@@ -796,17 +847,32 @@ ul {
 
   .nav__menu {
     all: unset;
+    flex: 1;
+    min-width: 0;
+    margin-left: 0.8rem;
   }
 
   .nav__list {
     flex-direction: row;
     align-items: center;
-    gap: 1.1rem;
+    justify-content: flex-end;
+    flex-wrap: nowrap;
+    gap: 0.3rem;
     padding: 0;
+    overflow-x: auto;
+    scrollbar-width: thin;
+  }
+
+  .nav__list li {
+    flex: 0 0 auto;
+  }
+
+  .theme-toggle {
+    margin-left: 0.25rem;
   }
 
   .theme-toggle__text {
-    font-size: 0.78rem;
+    font-size: 0.75rem;
   }
 
   .hero__content {
@@ -818,9 +884,6 @@ ul {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .experience__card:first-child {
-    grid-column: 1 / -1;
-  }
 
   .skills__grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -1036,6 +1099,14 @@ ul {
     max-height: calc(100vh - var(--header-height));
     overflow-y: auto;
     overflow-x: hidden;
+  }
+
+  .nav__list {
+    width: 100%;
+  }
+
+  .nav__link {
+    display: inline-flex;
   }
 
   .project__content {
