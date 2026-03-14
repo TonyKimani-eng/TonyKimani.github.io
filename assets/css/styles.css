@@ -333,7 +333,7 @@ ul {
   position: relative;
   z-index: 3;
   display: grid;
-  gap: var(--space-4);
+  gap: clamp(1.2rem, 2vw, 2rem);
   align-items: start;
 }
 
@@ -342,7 +342,9 @@ ul {
   backdrop-filter: blur(4px);
   border: 1px solid color-mix(in srgb, var(--color-border) 88%, transparent);
   border-radius: 1rem;
-  padding: clamp(1.4rem, 3vw, 2.2rem);
+  padding: clamp(1.25rem, 2.8vw, 2.15rem);
+  display: grid;
+  gap: clamp(0.85rem, 1.4vw, 1.15rem);
 }
 
 .hero__eyebrow {
@@ -365,7 +367,7 @@ ul {
   font-size: clamp(1.08rem, 2.1vw, 1.35rem);
   color: var(--color-muted);
   font-weight: 500;
-  margin: var(--space-1) 0 var(--space-2);
+  margin: 0.1rem 0 0.1rem;
 }
 
 .typing-text {
@@ -391,20 +393,41 @@ ul {
 }
 
 .hero__description {
-  max-width: 65ch;
+  max-width: 58ch;
+  color: color-mix(in srgb, var(--color-text) 90%, #ffffff 10%);
 }
 
-.hero__actions {
-  margin-top: var(--space-3);
+.hero__meta {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.9rem;
+  gap: 0.75rem;
+  margin-top: 0.35rem;
 }
 
+.hero__meta p {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  border: 1px solid color-mix(in srgb, var(--color-border) 82%, transparent);
+  border-radius: 999px;
+  padding: 0.32rem 0.7rem;
+  background: color-mix(in srgb, var(--color-surface) 76%, transparent);
+  color: var(--color-muted);
+  font-size: 0.88rem;
+}
+
+.hero__meta strong {
+  color: var(--color-title);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+
 .hero__highlights {
-  margin-top: var(--space-3);
+  margin-top: 0.15rem;
   display: grid;
-  gap: 0.5rem;
+  gap: 0.75rem;
   color: var(--color-muted);
 }
 
@@ -414,10 +437,14 @@ ul {
   margin-right: 0.6rem;
 }
 
+.hero__highlights strong {
+  color: var(--color-title);
+}
+
 .hero__profile {
   display: grid;
   gap: var(--space-2);
-  padding: var(--space-3);
+  padding: clamp(1.1rem, 2vw, 1.45rem);
   justify-items: center;
   text-align: center;
   transition: transform 0.35s ease, box-shadow 0.35s ease;
@@ -458,6 +485,8 @@ ul {
 .hero__profile-value {
   color: var(--color-title);
   font-weight: 500;
+  font-size: 0.95rem;
+  line-height: 1.6;
 }
 
 .button {
@@ -491,6 +520,60 @@ ul {
 .projects__grid {
   display: grid;
   gap: var(--space-3);
+}
+
+.experience__grid {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.experience__card {
+  border-color: color-mix(in srgb, var(--color-primary-alt) 35%, var(--color-border));
+  background: linear-gradient(150deg, color-mix(in srgb, var(--color-surface) 96%, #ffffff), color-mix(in srgb, var(--color-bg) 90%, var(--color-surface)));
+}
+
+.experience__meta {
+  display: inline-block;
+  margin-bottom: 0.55rem;
+  padding: 0.25rem 0.62rem;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--color-primary-alt);
+  background: color-mix(in srgb, var(--color-primary-soft) 70%, transparent);
+}
+
+.experience__org {
+  color: var(--color-title);
+  font-weight: 600;
+  margin-bottom: 0.7rem;
+}
+
+.experience__description {
+  color: var(--color-text);
+  margin-bottom: 0.8rem;
+}
+
+.experience__list {
+  padding-left: 0.2rem;
+}
+
+.experience__list li {
+  position: relative;
+  padding-left: 0.9rem;
+}
+
+.experience__list li::before {
+  content: "";
+  position: absolute;
+  top: 0.72rem;
+  left: 0;
+  width: 0.35rem;
+  height: 0.35rem;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--color-primary-alt) 75%, var(--color-primary));
 }
 
 .card {
@@ -728,6 +811,15 @@ ul {
 
   .hero__content {
     grid-template-columns: 1.3fr 0.7fr;
+    align-items: center;
+  }
+
+  .experience__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .experience__card:first-child {
+    grid-column: 1 / -1;
   }
 
   .skills__grid {
@@ -916,13 +1008,28 @@ ul {
     font-size: 1rem;
   }
 
-  .hero__actions {
-    gap: 0.7rem;
+
+  .hero__meta {
+    flex-direction: column;
+    align-items: flex-start;
   }
 
-  .hero__actions .button {
+  .hero__meta p {
     width: 100%;
-    text-align: center;
+    justify-content: space-between;
+    gap: 0.8rem;
+  }
+
+  .hero__highlights {
+    gap: 0.65rem;
+  }
+
+  .experience__grid {
+    gap: 1rem;
+  }
+
+  .experience__meta {
+    font-size: 0.74rem;
   }
 
   .nav__menu {
