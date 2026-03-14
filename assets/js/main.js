@@ -4,9 +4,7 @@ const navLinks = document.querySelectorAll('.nav__link');
 const sections = document.querySelectorAll('main section[id]');
 const yearSpan = document.getElementById('year');
 const rootElement = document.documentElement;
-const themeToggle = document.getElementById('theme-toggle');
-const themeIcon = document.getElementById('theme-icon');
-const themeText = document.getElementById('theme-text');
+const themeToggles = document.querySelectorAll('[data-theme-toggle]');
 const themeStorageKey = 'portfolio-theme';
 
 function getPreferredTheme() {
@@ -20,13 +18,17 @@ function applyTheme(theme) {
   rootElement.setAttribute('data-theme', theme);
 
   const isDark = theme === 'dark';
-  if (themeIcon) themeIcon.textContent = isDark ? '☀️' : '🌙';
-  if (themeText) themeText.textContent = isDark ? 'Light Mode' : 'Dark Mode';
 
-  if (themeToggle) {
-    themeToggle.setAttribute('aria-pressed', String(isDark));
-    themeToggle.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
-  }
+  themeToggles.forEach((toggle) => {
+    const icon = toggle.querySelector('.theme-toggle__icon');
+    const text = toggle.querySelector('.theme-toggle__text');
+
+    if (icon) icon.textContent = isDark ? '☀️' : '🌙';
+    if (text) text.textContent = isDark ? 'Light Mode' : 'Dark Mode';
+
+    toggle.setAttribute('aria-pressed', String(isDark));
+    toggle.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
+  });
 }
 
 const initialTheme = rootElement.getAttribute('data-theme') || getPreferredTheme();
@@ -62,14 +64,14 @@ if (navToggle && navMenu) {
   });
 }
 
-if (themeToggle) {
-  themeToggle.addEventListener('click', () => {
+themeToggles.forEach((toggle) => {
+  toggle.addEventListener('click', () => {
     const currentTheme = rootElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
     const nextTheme = currentTheme === 'dark' ? 'light' : 'dark';
     applyTheme(nextTheme);
     localStorage.setItem(themeStorageKey, nextTheme);
   });
-}
+});
 
 function updateActiveLink() {
   const scrollY = window.scrollY + 120;
