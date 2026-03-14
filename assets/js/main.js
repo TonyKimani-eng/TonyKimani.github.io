@@ -344,6 +344,30 @@ if (heroProfile && heroAvatar && !prefersReducedMotion) {
   });
 }
 
+/* ===== About subtle stagger reveal ===== */
+const aboutRevealItems = document.querySelectorAll('.about-reveal-item');
+
+if (!prefersReducedMotion && 'IntersectionObserver' in window && aboutRevealItems.length) {
+  const aboutObserver = new IntersectionObserver(
+    (entries, observer) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    {
+      threshold: 0.25,
+      rootMargin: '0px 0px -20px 0px',
+    }
+  );
+
+  aboutRevealItems.forEach((item) => aboutObserver.observe(item));
+} else {
+  aboutRevealItems.forEach((item) => item.classList.add('is-visible'));
+}
+
 /* ===== Skills scroll reveal ===== */
 const skillRevealItems = document.querySelectorAll('.skill-reveal');
 
