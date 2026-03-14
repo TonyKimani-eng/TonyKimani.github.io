@@ -49,34 +49,46 @@
         <a href="#home" class="nav__logo">Tony Kimani</a>
 
         <div class="nav__actions">
-          <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch to dark mode" aria-pressed="false">
+          <div class="nav__dropdown">
+            <button
+              class="nav__toggle"
+              id="nav-toggle"
+              type="button"
+              aria-label="Toggle navigation menu"
+              aria-expanded="false"
+              aria-controls="nav-menu"
+            >
+              Menu
+              <i class="bi bi-chevron-down" aria-hidden="true"></i>
+            </button>
+
+            <div class="nav__menu" id="nav-menu">
+              <ul class="nav__list">
+                <li><a href="#home" class="nav__link active-link">Home</a></li>
+                <li><a href="#about" class="nav__link">About</a></li>
+                <li><a href="#skills" class="nav__link">Skills</a></li>
+                <li><a href="#work-experience" class="nav__link">Work Experience</a></li>
+                <li><a href="#projects" class="nav__link">Projects</a></li>
+                <li><a href="#certifications" class="nav__link">Certifications</a></li>
+                <li><a href="#contact" class="nav__link">Contact</a></li>
+              </ul>
+              <button
+                class="theme-toggle theme-toggle--menu"
+                data-theme-toggle
+                type="button"
+                aria-label="Switch to dark mode"
+                aria-pressed="false"
+              >
+                <span class="theme-toggle__icon" aria-hidden="true">🌙</span>
+                <span class="theme-toggle__text">Dark Mode</span>
+              </button>
+            </div>
+          </div>
+
+          <button class="theme-toggle" id="theme-toggle" data-theme-toggle type="button" aria-label="Switch to dark mode" aria-pressed="false">
             <span class="theme-toggle__icon" id="theme-icon" aria-hidden="true">🌙</span>
             <span class="theme-toggle__text" id="theme-text">Dark Mode</span>
           </button>
-
-          <button
-            class="nav__toggle"
-            id="nav-toggle"
-            type="button"
-            aria-label="Toggle navigation menu"
-            aria-expanded="false"
-            aria-controls="nav-menu"
-          >
-            Menu
-            <i class="bi bi-chevron-down" aria-hidden="true"></i>
-          </button>
-
-          <div class="nav__menu" id="nav-menu">
-            <ul class="nav__list">
-              <li><a href="#home" class="nav__link active-link">Home</a></li>
-              <li><a href="#about" class="nav__link">About</a></li>
-              <li><a href="#skills" class="nav__link">Skills</a></li>
-              <li><a href="#work-experience" class="nav__link">Work Experience</a></li>
-              <li><a href="#projects" class="nav__link">Projects</a></li>
-              <li><a href="#certifications" class="nav__link">Certifications</a></li>
-              <li><a href="#contact" class="nav__link">Contact</a></li>
-            </ul>
-          </div>
         </div>
       </nav>
     </header>
